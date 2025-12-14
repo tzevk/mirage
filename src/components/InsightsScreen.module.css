@@ -1,0 +1,301 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 1.5rem;
+  background: linear-gradient(to bottom, #fafafa 0%, #f5f0f6 100%);
+  overflow: hidden;
+}
+
+.content {
+  max-width: 1000px;
+  width: 100%;
+  animation: fadeIn 0.8s ease-in;
+  overflow-y: auto;
+  max-height: 95vh;
+  padding-right: 0.5rem;
+}
+
+.title {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  font-weight: 700;
+  margin: 0 0 0.8rem 0;
+  text-align: center;
+  color: #64126D;
+  letter-spacing: 0.05rem;
+}
+
+.streamBadge {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 1.5rem;
+  background: linear-gradient(135deg, #64126D 0%, #86288F 100%);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(100, 18, 109, 0.3);
+}
+
+.scoreCircle {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 2rem;
+  background: linear-gradient(135deg, #64126D 0%, #86288F 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 32px rgba(100, 18, 109, 0.3);
+}
+
+.circleContent {
+  text-align: center;
+  color: white;
+}
+
+.scoreNumber {
+  display: block;
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.scoreLabel {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 300;
+  margin-top: 0.5rem;
+  opacity: 0.95;
+}
+
+.insightsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.insightCard {
+  background: white;
+  border-radius: 16px;
+  padding: 1.8rem 1.6rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: slideUp 0.6s ease-out backwards;
+}
+
+.insightCard:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.insightCard:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.insightCard:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.insightCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.strengthCard {
+  border-top: 5px solid #64126D;
+}
+
+.gapCard {
+  border-top: 5px solid #86288F;
+}
+
+.focusCard {
+  border-top: 5px solid #9B3FA5;
+}
+
+.cardLabel {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  color: #64126D;
+  margin-bottom: 0.8rem;
+  opacity: 0.8;
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 0.8rem 0;
+  color: #212529;
+  letter-spacing: 0.01rem;
+  line-height: 1.4;
+}
+
+.cardText {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #495057;
+  margin: 0;
+}
+
+.footer {
+  text-align: center;
+}
+
+.footerMessage {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #6c757d;
+  margin: 0 0 1.8rem 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.restartButton {
+  background: linear-gradient(135deg, #64126D 0%, #86288F 100%);
+  color: white;
+  border: none;
+  padding: 1rem 2.8rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  box-shadow: 0 6px 20px rgba(100, 18, 109, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.restartButton::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.restartButton:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.restartButton:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 32px rgba(100, 18, 109, 0.4);
+}
+
+.restartButton:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.qrBox {
+  background: white;
+  border: 2px solid #f0e6f1;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  min-width: 140px;
+}
+
+.qrPlaceholder {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #f0e6f1 100%);
+  border-radius: 12px;
+  margin: 0 auto 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #d0d0d0;
+}
+
+.qrText {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #64126D;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  .insightsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .scoreCircle {
+    width: 160px;
+    height: 160px;
+    margin-bottom: 3rem;
+  }
+
+  .scoreNumber {
+    font-size: 2.8rem;
+  }
+
+  .actions {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .insightCard {
+    padding: 2rem;
+  }
+}
