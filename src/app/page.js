@@ -5,12 +5,11 @@ import RegistrationScreen from '@/components/RegistrationScreen';
 import StreamSelection from '@/components/StreamSelection';
 import IntroScreen from '@/components/IntroScreen';
 import QuestionScreen from '@/components/QuestionScreen';
-import ResultsScreen from '@/components/ResultsScreen';
 import InsightsScreen from '@/components/InsightsScreen';
 import { getQuestionsForStream, calculateAlignment, generateInsights } from '@/data/questions';
 
 export default function Home() {
-  const [screen, setScreen] = useState('register'); // register, stream, intro, question, results, insights
+  const [screen, setScreen] = useState('register'); // register, stream, intro, question, insights
   const [userData, setUserData] = useState(null);
   const [selectedStream, setSelectedStream] = useState(null);
   const [questions, setQuestions] = useState([]);
@@ -48,7 +47,7 @@ export default function Home() {
       const generatedInsights = generateInsights(newResponses, score);
       setAlignmentScore(score);
       setInsights(generatedInsights);
-      setScreen('results');
+      setScreen('insights');
 
       // Save results to database
       saveResultsToDatabase(newResponses, score, generatedInsights);
@@ -71,10 +70,6 @@ export default function Home() {
     } catch (error) {
       console.error('Failed to save results:', error);
     }
-  };
-
-  const handleContinueToInsights = () => {
-    setScreen('insights');
   };
 
   const handleRestart = () => {
@@ -102,15 +97,6 @@ export default function Home() {
           questionNumber={currentQuestionIndex + 1}
           totalQuestions={questions.length}
           onAnswer={handleAnswer}
-        />
-      )}
-      
-      {screen === 'results' && (
-        <ResultsScreen
-          alignmentScore={alignmentScore}
-          responses={responses}
-          questions={questions}
-          onContinue={handleContinueToInsights}
         />
       )}
       

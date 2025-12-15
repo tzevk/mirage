@@ -570,18 +570,133 @@
   50% { opacity: 1; }
 }
 
-/* Mobile Optimizations */
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .content {
+    padding: 0.5rem 0;
+  }
+
+  .form {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .logoContainer {
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    letter-spacing: 0.3rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .progressContainer {
+    margin-bottom: 1rem;
+  }
+
+  .progressSteps {
+    gap: 1rem;
+  }
+
+  .step {
+    width: 26px;
+    height: 26px;
+    font-size: 0.75rem;
+  }
+
+  .input,
+  .select {
+    padding: 0.8rem 1rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+    border-radius: 10px;
+  }
+
+  .skillsGrid {
+    gap: 0.4rem;
+  }
+
+  .skillTag {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.85rem;
+    min-height: 44px; /* Touch target */
+  }
+
+  .radioGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .radioOption {
+    justify-content: flex-start;
+    padding: 1rem;
+    min-height: 50px;
+  }
+
+  .radioCircle {
+    width: 22px;
+    height: 22px;
+  }
+
+  .fileUpload {
+    padding: 1.2rem;
+  }
+
+  .buttonRow {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .backButton {
+    flex: 1;
+    order: 2;
+  }
+
+  .submitButton {
+    flex: 1;
+    order: 1;
+    padding: 1rem 1.5rem;
+    min-height: 50px;
+  }
+
+  .confirmTitle {
+    font-size: 1.8rem;
+    letter-spacing: 0.15rem;
+  }
+
+  .confirmSubtitle {
+    font-size: 1rem;
+  }
+
+  .checkmarkCircle {
+    width: 80px;
+    height: 80px;
+  }
+}
+
 @media (max-width: 480px) {
   .container {
-    padding: 0.5rem;
+    padding: 0.75rem;
   }
   
   .content {
-    padding: 0.5rem 0;
+    padding: 0.25rem 0;
   }
   
   .form {
     padding: 1rem;
+    border-radius: 14px;
   }
   
   .logoContainer {
@@ -591,11 +706,29 @@
   .title {
     letter-spacing: 0.2rem;
   }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .progressSteps {
+    gap: 0.8rem;
+  }
+
+  .step {
+    width: 24px;
+    height: 24px;
+    font-size: 0.7rem;
+  }
   
   .input,
   .select {
     padding: 0.7rem 0.9rem;
     font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .inputGroup label {
+    font-size: 0.8rem;
   }
   
   .skillTag {
@@ -607,5 +740,59 @@
   .backButton {
     padding: 0.8rem 1rem;
     font-size: 0.95rem;
+  }
+
+  .reassurance {
+    font-size: 0.75rem;
+  }
+
+  .confirmTitle {
+    font-size: 1.5rem;
+  }
+
+  .confirmSubtitle {
+    font-size: 0.9rem;
+  }
+
+  .checkmarkCircle {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .form {
+    padding: 0.8rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+    letter-spacing: 0.15rem;
+  }
+
+  .step {
+    width: 22px;
+    height: 22px;
+    font-size: 0.65rem;
+  }
+
+  .input,
+  .select {
+    padding: 0.6rem 0.8rem;
+  }
+
+  .skillTag {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.75rem;
+  }
+
+  .submitButton,
+  .backButton {
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
   }
 }

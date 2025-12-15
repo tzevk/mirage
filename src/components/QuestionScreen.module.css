@@ -1,10 +1,10 @@
 .container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(to bottom, #fafafa 0%, #f5f5f5 100%);
   padding: 1.5rem;
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 .header {
@@ -189,6 +189,24 @@
   width: 100%;
 }
 
+.matchBox {
+  background: linear-gradient(135deg, rgba(72, 187, 120, 0.15) 0%, rgba(72, 187, 120, 0.05) 100%);
+  border-color: #48bb78;
+}
+
+.differentBox {
+  background: linear-gradient(135deg, rgba(237, 137, 54, 0.15) 0%, rgba(237, 137, 54, 0.05) 100%);
+  border-color: #ed8936;
+}
+
+.matchBox .answerLabel {
+  color: #48bb78;
+}
+
+.differentBox .answerLabel {
+  color: #ed8936;
+}
+
 .answerLabel {
   display: block;
   font-size: 0.8rem;
@@ -354,6 +372,92 @@
   color: white;
 }
 
+/* Locked state after reveal */
+.optionButton.locked {
+  cursor: default;
+  pointer-events: none;
+}
+
+.optionButton.locked:hover {
+  transform: none;
+}
+
+/* Industry choice highlight */
+.optionButton.industryChoice {
+  border-color: #48bb78;
+  background: rgba(72, 187, 120, 0.1);
+}
+
+.optionButton.industryChoice::before {
+  transform: scaleY(1);
+  background: linear-gradient(to bottom, #48bb78, #38a169);
+}
+
+.optionButton.industryChoice .optionNumber {
+  background: rgba(72, 187, 120, 0.2);
+  color: #48bb78;
+}
+
+/* Industry tag on options */
+.industryTag {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #48bb78;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+/* Result badges in panel header */
+.resultBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  animation: badgePop 0.3s ease-out;
+}
+
+@keyframes badgePop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.matchBadge {
+  background: #48bb78;
+  color: white;
+}
+
+.differentBadge {
+  background: #ed8936;
+  color: white;
+}
+
+/* Continue button style */
+.continueButton {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+  box-shadow: 0 6px 20px rgba(72, 187, 120, 0.3);
+}
+
+.continueButton:hover:not(:disabled) {
+  box-shadow: 0 10px 28px rgba(72, 187, 120, 0.4);
+}
+
 .optionText {
   font-size: 1rem;
   line-height: 1.6;
@@ -475,6 +579,11 @@
     font-size: 1.1rem;
   }
 
+  .resultBadge {
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+  }
+
   .industryPanel::before {
     width: 60px;
     height: 60px;
@@ -496,6 +605,15 @@
     min-height: auto;
     padding: 1rem;
     border-radius: 12px;
+  }
+
+  .industryTag {
+    font-size: 0.55rem;
+    padding: 0.2rem 0.5rem;
+  }
+
+  .industryAnswerBox {
+    padding: 1.2rem;
   }
 
   .optionNumber {

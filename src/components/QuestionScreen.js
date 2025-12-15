@@ -3,21 +3,39 @@ import styles from './QuestionScreen.module.css';
 
 export default function QuestionScreen({ question, questionNumber, totalQuestions, onAnswer }) {
   const [selectedOption, setSelectedOption] = useState(null);
-  const [showIndustry, setShowIndustry] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   const handleSelect = (option) => {
-    setSelectedOption(option);
+    if (!isRevealed) {
+      setSelectedOption(option);
+    }
+  };
+
+  const handleSubmit = () => {
+    if (selectedOption && !isRevealed) {
+      // Reveal the industry answer
+      setIsRevealed(true);
+    }
   };
 
   const handleNext = () => {
-    if (selectedOption) {
-      onAnswer(selectedOption);
-      setSelectedOption(null);
-      setShowIndustry(false);
+    if (selectedOption && isRevealed) {
+      setIsTransitioning(true);
+      // Short delay for user to see the reveal, then proceed
+      setTimeout(() => {
+        onAnswer(selectedOption);
+        setSelectedOption(null);
+        setIsRevealed(false);
+        setIsTransitioning(false);
+      }, 300);
     }
   };
 
   const progressPercentage = (questionNumber / totalQuestions) * 100;
+  
+  // Check if user's answer matches industry answer
+  const isMatch = isRevealed && selectedOption?.text === question.industryAnswer.text;
 
   return (
     <div className={styles.container}>
@@ -37,50 +55,88 @@ export default function QuestionScreen({ question, questionNumber, totalQuestion
       </div>
 
       <div className={styles.splitScreen}>
-        {/* Left Panel - Industry (Locked) */}
-        <div className={`${styles.panel} ${styles.industryPanel}`}>
+        {/* Left Panel - Industry */}
+        <div className={`${styles.panel} ${styles.industryPanel} ${isRevealed ? styles.revealed : ''}`}>
           <div className={styles.panelHeader}>
             <h3>Industry Expects</h3>
-            <span className={styles.lockIcon}>🔒</span>
+            <span className={styles.lockIcon}>{isRevealed ? '🔓' : '🔒'}</span>
           </div>
-          <div className={styles.lockedContent}>
-            <div className={styles.lockedOverlay}>
-              <span className={styles.lockIconLarge}>🔒</span>
-              <p>Revealed after all questions</p>
+          
+          {isRevealed ? (
+            <div className={styles.industryAnswer}>
+              <div className={`${styles.industryAnswerBox} ${isMatch ? styles.matchBox : styles.differentBox}`}>
+                <span className={styles.answerLabel}>
+                  {isMatch ? 'You matched!' : 'Industry prefers:'}
+                </span>
+                <p className={styles.answerText}>{question.industryAnswer.text}</p>
+              </div>
             </div>
-          </div>
+          ) : (
+            <div className={styles.lockedContent}>
+              <div className={styles.lockedOverlay}>
+                <span className={styles.lockIconLarge}>🔒</span>
+                <p>Submit your answer to reveal</p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Right Panel - Student Choice */}
         <div className={`${styles.panel} ${styles.studentPanel}`}>
           <div className={styles.panelHeader}>
             <h3>You Choose</h3>
+            {isRevealed && (
+              <span className={`${styles.resultBadge} ${isMatch ? styles.matchBadge : styles.differentBadge}`}>
+                {isMatch ? 'Match' : 'Different'}
+              </span>
+            )}
           </div>
           <div className={styles.optionsContainer}>
-            {question.studentOptions.map((option, index) => (
-              <button
-                key={index}
-                className={`${styles.optionButton} ${
-                  selectedOption?.text === option.text ? styles.selected : ''
-                }`}
-                onClick={() => handleSelect(option)}
-              >
-                <span className={styles.optionNumber}>{String.fromCharCode(65 + index)}</span>
-                <span className={styles.optionText}>{option.text}</span>
-              </button>
-            ))}
+            {question.studentOptions.map((option, index) => {
+              const isSelected = selectedOption?.text === option.text;
+              const isIndustryChoice = isRevealed && option.text === question.industryAnswer.text;
+              
+              return (
+                <button
+                  key={index}
+                  className={`${styles.optionButton} 
+                    ${isSelected ? styles.selected : ''} 
+                    ${isRevealed && isIndustryChoice && !isSelected ? styles.industryChoice : ''}
+                    ${isRevealed ? styles.locked : ''}
+                  `}
+                  onClick={() => handleSelect(option)}
+                  disabled={isRevealed}
+                >
+                  <span className={styles.optionNumber}>{String.fromCharCode(65 + index)}</span>
+                  <span className={styles.optionText}>{option.text}</span>
+                  {isRevealed && isIndustryChoice && !isSelected && (
+                    <span className={styles.industryTag}>Industry</span>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
       </div>
 
       <div className={styles.footer}>
-        <button
-          className={styles.nextButton}
-          onClick={handleNext}
-          disabled={!selectedOption}
-        >
-          {questionNumber === totalQuestions ? 'See Results' : 'Next'}
-        </button>
+        {!isRevealed ? (
+          <button
+            className={styles.nextButton}
+            onClick={handleSubmit}
+            disabled={!selectedOption}
+          >
+            Submit Answer
+          </button>
+        ) : (
+          <button
+            className={`${styles.nextButton} ${styles.continueButton}`}
+            onClick={handleNext}
+            disabled={isTransitioning}
+          >
+            {questionNumber === totalQuestions ? 'See Results' : 'Continue'}
+          </button>
+        )}
       </div>
     </div>
   );
