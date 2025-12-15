@@ -1,0 +1,611 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1rem;
+  background: linear-gradient(135deg, #64126D 0%, #86288F 100%);
+  position: relative;
+  overflow-y: auto;
+}
+
+.container::before {
+  content: '';
+  position: fixed;
+  top: -20%;
+  left: -20%;
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.25) 0%, rgba(255, 182, 255, 0.15) 40%, transparent 70%);
+  animation: moveBlob1 20s infinite ease-in-out alternate;
+  border-radius: 45%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.container::after {
+  content: '';
+  position: fixed;
+  bottom: -20%;
+  right: -20%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle, rgba(155, 63, 165, 0.4) 0%, rgba(218, 112, 214, 0.2) 50%, transparent 75%);
+  animation: moveBlob2 25s infinite ease-in-out alternate;
+  border-radius: 42%;
+  filter: blur(50px);
+  pointer-events: none;
+}
+
+@keyframes moveBlob1 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  25% { transform: translate(40px, -50px) scale(1.15) rotate(90deg); }
+  50% { transform: translate(-30px, 40px) scale(0.9) rotate(180deg); }
+  75% { transform: translate(50px, 30px) scale(1.1) rotate(270deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(360deg); }
+}
+
+@keyframes moveBlob2 {
+  0% { transform: translate(0, 0) rotate(0deg) scale(1); }
+  25% { transform: translate(-40px, 50px) rotate(90deg) scale(1.2); }
+  50% { transform: translate(50px, -40px) rotate(180deg) scale(0.95); }
+  75% { transform: translate(-30px, -20px) rotate(270deg) scale(1.15); }
+  100% { transform: translate(0, 0) rotate(360deg) scale(1); }
+}
+
+.content {
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+  color: white;
+  animation: fadeIn 0.8s ease-in;
+  position: relative;
+  z-index: 1;
+  padding: 1rem 0;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.logoContainer {
+  margin-bottom: 0.8rem;
+}
+
+.logo {
+  filter: drop-shadow(0 2px 8px rgba(255, 255, 255, 0.2));
+  border-radius: 12px;
+}
+
+.title {
+  font-size: clamp(1.8rem, 4vw, 2.2rem);
+  font-weight: 700;
+  margin: 0 0 0.3rem 0;
+  letter-spacing: 0.4rem;
+  text-transform: uppercase;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(to right, #ffffff, #f0e6f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin: 0 0 1rem 0;
+  opacity: 0.9;
+  letter-spacing: 0.05rem;
+}
+
+/* Progress Indicator */
+.progressContainer {
+  margin-bottom: 1rem;
+}
+
+.progressBar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: white;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.progressSteps {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10%;
+}
+
+.progressStep {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.progressStep.active {
+  background: white;
+  color: #64126D;
+}
+
+/* Form */
+.form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.stepContent {
+  animation: fadeIn 0.4s ease;
+}
+
+.twoColumns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 550px) {
+  .twoColumns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.inputGroup {
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  opacity: 0.9;
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.input:focus,
+.select:focus {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.inputError {
+  border-color: #ff6b6b;
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='white' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.select option {
+  background: #64126D;
+  color: white;
+  padding: 0.5rem;
+}
+
+.error {
+  display: block;
+  font-size: 0.75rem;
+  color: #ff6b6b;
+  margin-top: 0.3rem;
+  font-weight: 500;
+}
+
+/* Radio Group */
+.radioGroup {
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 0.5rem;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.radio {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.radio:checked {
+  border-color: white;
+  background: white;
+}
+
+.radio:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #64126D;
+}
+
+.radioText {
+  font-size: 0.95rem;
+}
+
+/* Skills Grid */
+.skillsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.skillTag {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.skillTag:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.skillSelected {
+  background: white;
+  color: #64126D;
+  border-color: white;
+  font-weight: 600;
+}
+
+/* File Upload */
+.fileUpload {
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  padding: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.fileUpload:hover {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.fileInput {
+  display: none;
+}
+
+.fileUploadContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.uploadIcon {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.fileName {
+  font-weight: 600;
+  color: #a8e6cf;
+}
+
+.optionalNote {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 0.4rem;
+  font-style: italic;
+}
+
+/* Consent Checkbox */
+.consentGroup {
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: flex-start;
+  cursor: pointer;
+  gap: 0.8rem;
+}
+
+.checkbox {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  margin-top: 2px;
+}
+
+.checkbox:checked {
+  border-color: white;
+  background: white;
+}
+
+.checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #64126D;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.checkboxText {
+  font-size: 0.85rem;
+  line-height: 1.4;
+  opacity: 0.9;
+}
+
+/* Submit Error */
+.submitError {
+  background: rgba(255, 107, 107, 0.2);
+  border: 1px solid #ff6b6b;
+  border-radius: 8px;
+  padding: 0.8rem;
+  font-size: 0.85rem;
+  color: #ff6b6b;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* Buttons */
+.buttonRow {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.backButton {
+  flex: 0.4;
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: white;
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: white;
+}
+
+.submitButton {
+  flex: 1;
+  margin-top: 0;
+  background: white;
+  color: #64126D;
+  border: none;
+  padding: 0.9rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.08rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.submitButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.submitButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.submitButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* For step 1, full width button */
+.stepContent > .submitButton {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.reassurance {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+/* Confirmation Screen */
+.confirmationContent {
+  text-align: center;
+  color: white;
+  animation: fadeIn 0.6s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.checkmarkCircle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 1.5rem;
+}
+
+.checkmark {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: white;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px white;
+  animation: fillCheck 0.4s ease-in-out 0.4s forwards, scaleCheck 0.3s ease-in-out 0.9s both;
+}
+
+.checkmarkCircleBg {
+  stroke: white;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  fill: none;
+  animation: strokeCircle 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmarkCheck {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke: white;
+  stroke-width: 3;
+  animation: strokeCheck 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes strokeCircle {
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes strokeCheck {
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes fillCheck {
+  100% { box-shadow: inset 0px 0px 0px 50px rgba(255, 255, 255, 0.1); }
+}
+
+@keyframes scaleCheck {
+  0%, 100% { transform: none; }
+  50% { transform: scale3d(1.1, 1.1, 1); }
+}
+
+.confirmTitle {
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.1rem;
+}
+
+.confirmSubtitle {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin: 0 0 1.5rem 0;
+}
+
+.confirmNote {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5rem;
+  }
+  
+  .content {
+    padding: 0.5rem 0;
+  }
+  
+  .form {
+    padding: 1rem;
+  }
+  
+  .logoContainer {
+    margin-bottom: 0.5rem;
+  }
+  
+  .title {
+    letter-spacing: 0.2rem;
+  }
+  
+  .input,
+  .select {
+    padding: 0.7rem 0.9rem;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  
+  .skillTag {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .submitButton,
+  .backButton {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+  }
+}

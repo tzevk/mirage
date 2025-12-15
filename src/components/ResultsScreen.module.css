@@ -264,3 +264,135 @@
     transform: translateY(0);
   }
 }
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .content {
+    max-height: none;
+    padding-right: 0;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .comparisons {
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .comparisonCard {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  .questionHeader {
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .questionNumber,
+  .categoryBadge,
+  .matchBadge {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.75rem;
+  }
+
+  .matchBadge {
+    margin-left: 0;
+    margin-top: 0.3rem;
+  }
+
+  .questionScenario {
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+
+  .answerComparison {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .answerBox {
+    padding: 0.8rem;
+    border-radius: 10px;
+  }
+
+  .answerLabel {
+    font-size: 0.7rem;
+  }
+
+  .answerText {
+    font-size: 0.8rem;
+    line-height: 1.4;
+  }
+
+  .scoreSection {
+    padding: 1.5rem 1rem;
+    margin: 1.5rem 0;
+  }
+
+  .scoreTitle {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
+  .scoreCircle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .scoreNumber {
+    font-size: 2rem;
+  }
+
+  .continueButton {
+    padding: 0.9rem 2rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .comparisonCard {
+    padding: 0.8rem;
+  }
+
+  .questionScenario {
+    font-size: 0.8rem;
+  }
+
+  .answerBox {
+    padding: 0.7rem;
+  }
+
+  .scoreCircle {
+    width: 90px;
+    height: 90px;
+  }
+
+  .scoreNumber {
+    font-size: 1.8rem;
+  }
+}

@@ -272,30 +272,136 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .container {
-    padding: 1.5rem;
+    padding: 1rem;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+  }
+
+  .content {
+    max-height: none;
+    padding: 0.5rem 0;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .streamBadge {
+    padding: 0.4rem 1.2rem;
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .scoreCircle {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1.5rem;
+  }
+
+  .scoreNumber {
+    font-size: 2.2rem;
+  }
+
+  .scoreLabel {
+    font-size: 0.85rem;
   }
 
   .insightsGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
-  .scoreCircle {
-    width: 160px;
-    height: 160px;
-    margin-bottom: 3rem;
+  .insightCard {
+    padding: 1.2rem;
+    border-radius: 14px;
   }
 
-  .scoreNumber {
-    font-size: 2.8rem;
+  .cardLabel {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .cardTitle {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .cardText {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .footer {
+    margin-top: 1.5rem;
+  }
+
+  .footerMessage {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding: 0 0.5rem;
   }
 
   .actions {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
+  }
+
+  .restartButton {
+    padding: 0.9rem 2rem;
+    font-size: 0.95rem;
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .qrBox {
+    padding: 1rem;
+    min-width: 120px;
+  }
+
+  .qrPlaceholder {
+    width: 100px;
+    height: 100px;
+  }
+
+  .qrText {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .scoreCircle {
+    width: 100px;
+    height: 100px;
+  }
+
+  .scoreNumber {
+    font-size: 1.8rem;
   }
 
   .insightCard {
-    padding: 2rem;
+    padding: 1rem;
+  }
+
+  .cardTitle {
+    font-size: 0.95rem;
+  }
+
+  .cardText {
+    font-size: 0.85rem;
+  }
+
+  .restartButton {
+    padding: 0.8rem 1.5rem;
+    font-size: 0.9rem;
   }
 }
